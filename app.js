@@ -13,6 +13,7 @@ require('dotenv').config()
 const authRoutes = require('./routes/auth')
 const userRoutes = require('./routes/user')
 const categoryRoutes = require('./routes/category')
+const productRoutes = require('./routes/product')
 
 /** Connect to DB */
 mongoose.connect(process.env.DATABASE, {useNewUrlParser: true, useUnifiedTopology: true}).then(()=> console.log("DB Connected"));
@@ -30,7 +31,8 @@ app.get('/', function(req, res) {
 //routes middleware
 app.use("/api", authRoutes)
 app.use("/api", userRoutes)
-app.use("/api/category", categoryRoutes)
+app.use("/api", categoryRoutes)
+app.use("/api/product", productRoutes)
 
 const port = process.env.PORT || 8080
 
