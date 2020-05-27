@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const { check, validationResult} = require('express-validator');
 const cookieParser = require('cookie-parser')
+const cors = require('cors');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(morgan('dev'))
 app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(express.json());
+app.use(cors())
 
 app.get('/', function(req, res) {
     res.send('Olá mundo');
@@ -32,7 +34,7 @@ app.get('/', function(req, res) {
 app.use("/api", authRoutes)
 app.use("/api", userRoutes)
 app.use("/api", categoryRoutes)
-app.use("/api/product", productRoutes)
+app.use("/api", productRoutes)
 
 const port = process.env.PORT || 8080
 
